@@ -55,3 +55,83 @@ xlabel('y','FontSize',15);
 set(gca,'FontSize',15);
 
 ```
+
+### Cell(plot muti funHandlers with legend)
+
+- Discription of problem 
+
+Suppose we have several functions f1,f2,...,fn with same input data x1,x2,...,xm 
+For each function we want to plot the cureve with different legends
+
+- Solution 
+
+	 - Using Loop
+	 - Use cell 
+	 	- Stores functions in cell 
+
+	 	cellFunArray = {@f1,@f2,...}
+	 	- **NOTE**
+
+	 		- If fun defined using **function** val=fName(var1,..)
+	 	
+	 			**cellFunArray = {@fName}**
+	 		- Otherwise 
+
+	 			**cellFunArray = {fName}**
+
+	 		- when **call cellFunArray{index}(x1,x2,...)**
+	 	- Stores lengedns in cell
+
+	 	cellLegend = {'f1','f2',...}
+	 	
+	 	when call just use legend(cellLegend) 	
+- E.G.
+
+	 - Suppose we have three functions 
+
+	 	- f1 = x.^(1.1);
+	 	- f2 = x.^(1.2);
+	 	- f3 = x.^(1.3); (defined use function)
+	 - What to plot over a fixed array x = 1:1:100;
+	 - 
+	 - **NOTE**: must transpose x or y to make sure the resulting z is a 2D matrix( similar to grid search)
+```matlab
+% max_fun_value.m
+% Find the max function value for a given range and coresponding x
+
+
+f1 = @(x) x.^(1.1);
+f2 = @(x) x.^1.2;
+
+% if wanna compare and plot different strategy with legends cmp_legend != 0
+% sigle plot cmp_legend = 1
+cmp_legend =0; 
+legendCell = {'f1','f2','f3'};
+strategy_list = {f1,f2,@f3};
+close all;
+x = 1:1:10;
+for i=1:length(strategy_list)
+	if(i==length(strategy_list)) 
+        cmp_legend = 1;		% plot legend in last function call
+    end
+    y = strategy_list{i}(x);
+    figure(1); hold on;
+    if(cmp_legend==0)
+        plot(x,y);hold on;
+    else % plot legends and axies (last function)
+        plot(x,y);hold on;
+        xlabel('x','fontsize',15);
+        ylabel('y','fontsize',15);
+        title('Multi y-x plot','fontsize',20);
+        legend(legendCell);
+        hold off;
+    end
+    
+end
+    
+
+function val = f3(x)
+    val = x.^1.3;
+end
+
+```
