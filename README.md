@@ -135,3 +135,40 @@ function val = f3(x)
 end
 
 ```
+
+### Plot pdf function for a given data
+
+- Discription of problem 
+
+Given a set of data, count the number of occurance in a certain range and plot the normalized pdf function of the data
+
+Plot empty bin ('FaceColor','none')
+```
+colour = 'g'
+h = histogram(data,'Normalization','probability','FaceColor','none','edgecolor',colour);hold on;
+```
+- Solution 
+
+	- Histogram and its built in properties
+
+- E.G.
+	- Given data (a list of numbers)
+	- Want to plot the normlized pdf funtion 
+
+```{matlab}
+% Colour (light version compared to 'r','g','b')
+% (green)[.2 .71 .3]
+% (dark blue)[.25 .55 .79]
+% dark red [.9 .1 .14]
+% orange [1 0.5 0]
+data = randn(100,1);
+h = histogram(data,'Normalization','probability','facecolor',[1 0.5 0]);hold on;
+count = h.BinCounts;		% height of the bar
+w = h.BinWidth;				% width of the bar
+range = h.BinLimits;		% [startX endX]
+% Use the mid point of the bar
+plot(range(1)+w/2:w:range(2)+w/2,c/sum(c),'color',[1 0.5 0]);hold on;
+```
+
+
+

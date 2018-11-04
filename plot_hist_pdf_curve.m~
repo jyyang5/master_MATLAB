@@ -1,0 +1,28 @@
+% plot_hist_pdf_curve.m
+% Plot the normalized pdf curve of a given data
+
+
+% Colour (light version compared to 'r','g','b')
+% (green)[.2 .71 .3]
+% (dark blue)[.25 .55 .79]
+% dark red [.9 .1 .14]
+% orange [1 0.5 0]
+for i =1:1:4
+    colour = [.25 .55 .79];
+    data = randn(100,1);
+    h = histogram(data,'Normalization','probability','facecolor',colour);hold on;
+    value = h.Values;		% height of the bar
+    w = h.BinWidth;				% width of the bar
+range = h.BinLimits;		% [startX endX]
+% Use the mid point of the bar
+figure(11);
+if(colour == [.2 .71 .3])
+    plot(range(1)+w/2:w:range(2)-w/2,value,'color','g');hold on;
+elseif(colour == [.25 .55 .79])
+    plot(range(1)+w/2:w:range(2)-w/2,value,'color','b');hold on;
+elseif(colour == [.9 .1 .14])
+    plot(range(1)+w/2:w:range(2)-w/2,value,'color','r');hold on;
+elseif(colour == [1 0.5 0])
+    plot(range(1)+w/2:w:range(2)-w/2,value,'color',[0.9100 0.4100 0.1700]);hold on;
+end
+end
