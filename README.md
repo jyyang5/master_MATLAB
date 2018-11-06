@@ -170,5 +170,11 @@ range = h.BinLimits;		% [startX endX]
 plot(range(1)+w/2:w:range(2)+w/2,c/sum(c),'color',[1 0.5 0]);hold on;
 ```
 
+### Fliter a matrix
 
+```{matlba}
+# Filter zeros
+filtered = nonezeros(data)
+
+```
 
