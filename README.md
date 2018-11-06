@@ -172,9 +172,38 @@ plot(range(1)+w/2:w:range(2)+w/2,c/sum(c),'color',[1 0.5 0]);hold on;
 
 ### Fliter a matrix
 
-```{matlba}
+```{matlab}
 # Filter zeros
 filtered = nonezeros(data)
 
+```
+
+
+### Take index of median value in an array
+- Discription of problem 
+
+Have an array 'x'
+
+Want to find the index of the median value of 'x'
+
+- Solution 
+
+Sort array 
+
+Find median value
+
+Filter get the index 
+
+
+```{matlab}
+x = randn(10,1);
+% Sort the array
+sorted_x = sort(x);
+% Get the median value
+med_x_val = sorted_x(length(sorted_x)/2);
+% Obtain the index of median value in original array
+x_med_index = find(x == med_x_val);
+% w.l.o.g. take the first value (could be an array)
+x_med_index = x_med_index(1);
 ```
 
