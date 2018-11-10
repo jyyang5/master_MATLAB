@@ -2,6 +2,12 @@
 ## Contents
 
 - Reduce for-loop (max fun value)
+- CellArray(plot muti funHandlers with legend)
+- Plot pdf function for a given data
+- Fliter a matrix
+- Take index of median value in an array
+- Compact plot using package subtightplot 
+
 
 
 ### Reduce for-loop (max fun value)
@@ -206,4 +212,39 @@ x_med_index = find(x == med_x_val);
 % w.l.o.g. take the first value (could be an array)
 x_med_index = x_med_index(1);
 ```
+
+### [Compact plot using package subtightplot](https://www.mathworks.com/matlabcentral/fileexchange/39664-subtightplot)
+- Discription of problem 
+
+Merge several plots in one figures but the spacing is too large
+
+- Solution 
+
+Use package subtightplot(subtightplot.m)
+
+**NOTE**: things will be fine if you full screen the figure
+
+- Paramters
+```
+subplot = @(m,n,p) subtightplot (m, n, p, [0.05 0.02], [0.05 0.02], [0.05 0.02]);		% compact setting that I like
+% [rowSpace colSpace]
+```
+
+
+
+```{matlab}
+% For tight subplots PLEASE put subtightplot.m in the same folder
+make_it_tight = true;
+subplot = @(m,n,p) subtightplot (m, n, p, [0.05 0.02], [0.05 0.02], [0.05 0.02]);		% compact setting that I like
+if ~make_it_tight,  clear subplot;  end
+% Then include you previous subplot code should do 
+x = 1:0.1:5;
+figure(20);
+for i=1:1:4
+	subplot(2,2,i);
+	plot(x,x.^i/2);
+end
+
+```
+
 
