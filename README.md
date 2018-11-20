@@ -4,15 +4,15 @@
 - Reduce for-loop (max fun value)
 - CellArray(plot muti funHandlers with legend)
 - Plot pdf function for a given data
-- Fliter a matrix
+- Filter a matrix
 - Take index of median value in an array
 - Compact plot using package subtightplot 
-
+- Matrix dot product using `repmat`
 
 
 ### Reduce for-loop (max fun value)
 
-- Discription of problem 
+- Description of problem 
 
 Find the maximum value of a function f(x,y,...,z) in terms of x and the coresponding x 
 
@@ -20,7 +20,7 @@ Find the maximum value of a function f(x,y,...,z) in terms of x and the corespon
 
 	 - Using matrix
 	 - Element-wise operation 
-	 - Boardcasting (automatically done)  
+	 - Broadcasting (automatically done)  
 	 - [max_val index] = max(z)  
 
 - E.G.
@@ -44,7 +44,7 @@ for i=1:1:length(x)
 	x_max_z(i) = x(max_x_index(i));
 end
 
-% corespoding x for largest z over y
+% corresponding x for largest z over y
 figure(3);
 plot(y,x_max_z);
 xlabel('y','FontSize',15);%
@@ -64,7 +64,7 @@ set(gca,'FontSize',15);
 
 ### Cell(plot muti funHandlers with legend)
 
-- Discription of problem 
+- Description of problem 
 
 Suppose we have several functions f1,f2,...,fn with same input data x1,x2,...,xm 
 For each function we want to plot the cureve with different legends
@@ -86,7 +86,7 @@ For each function we want to plot the cureve with different legends
 	 			**cellFunArray = {fName}**
 
 	 		- when **call cellFunArray{index}(x1,x2,...)**
-	 	- Stores lengedns in cell
+	 	- Stores lengends in cell
 
 	 	cellLegend = {'f1','f2',...}
 	 	
@@ -103,7 +103,7 @@ For each function we want to plot the cureve with different legends
 	 - **NOTE**: must transpose x or y to make sure the resulting z is a 2D matrix( similar to grid search)
 ```matlab
 % max_fun_value.m
-% Find the max function value for a given range and coresponding x
+% Find the max function value for a given range and corresponding x
 
 
 f1 = @(x) x.^(1.1);
@@ -144,9 +144,9 @@ end
 
 ### Plot pdf function for a given data
 
-- Discription of problem 
+- Description of problem 
 
-Given a set of data, count the number of occurance in a certain range and plot the normalized pdf function of the data
+Given a set of data, count the number of occurrence in a certain range and plot the normalized pdf function of the data
 
 Plot empty bin ('FaceColor','none')
 ```
@@ -159,7 +159,7 @@ h = histogram(data,'Normalization','probability','FaceColor','none','edgecolor',
 
 - E.G.
 	- Given data (a list of numbers)
-	- Want to plot the normlized pdf funtion 
+	- Want to plot the normalized pdf function 
 
 ```{matlab}
 % Colour (light version compared to 'r','g','b')
@@ -176,7 +176,7 @@ range = h.BinLimits;		% [startX endX]
 plot(range(1)+w/2:w:range(2)+w/2,c/sum(c),'color',[1 0.5 0]);hold on;
 ```
 
-### Fliter a matrix
+### Filter a matrix
 
 ```{matlab}
 # Filter zeros
@@ -186,7 +186,7 @@ filtered = nonezeros(data)
 
 
 ### Take index of median value in an array
-- Discription of problem 
+- Description of problem 
 
 Have an array 'x'
 
@@ -214,7 +214,7 @@ x_med_index = x_med_index(1);
 ```
 
 ### [Compact plot using package subtightplot](https://www.mathworks.com/matlabcentral/fileexchange/39664-subtightplot)
-- Discription of problem 
+- Description of problem 
 
 Merge several plots in one figures but the spacing is too large
 
@@ -224,7 +224,7 @@ Use package subtightplot(subtightplot.m)
 
 **NOTE**: things will be fine if you full screen the figure
 
-- Paramters
+- Parameters
 ```
 subplot = @(m,n,p) subtightplot (m, n, p, [0.05 0.02], [0.05 0.02], [0.05 0.02]);		% compact setting that I like
 % [rowSpace colSpace]
@@ -247,4 +247,21 @@ end
 
 ```
 
+### Matrix dot product using `repmat`
+
+- Description of problem 
+
+Want to calculate y = a \times x, where size(a) = [1,N], size(x)=[1,M] return size(y) = [N,M]
+
+- Solution 
+
+Use 'repmat(x,repeatNumOfCols,repeatNumOfRows)'
+
+
+```
+a = 1:1:5;
+x = randn(1,10);
+a_trans = transpose(a);
+y = repmat(a_trans,1,length(x)).*x; %size(y) = [5,10]
+```
 
