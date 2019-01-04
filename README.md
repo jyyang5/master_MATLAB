@@ -8,6 +8,7 @@
 - Take index of median value in an array
 - Compact plot using package subtightplot 
 - Matrix dot product using `repmat`
+- Bar chart with different legends and categories 
 
 
 ### Reduce for-loop (max fun value)
@@ -265,3 +266,21 @@ a_trans = transpose(a);
 y = repmat(a_trans,1,length(x)).*x; %size(y) = [5,10]
 ```
 
+
+### Bar chart with different legends and categories 
+- Description of problem 
+
+Want to have bar chart that each individual has several subcategories 
+
+- Solution 
+
+	- Multiple bar chart: matrix each row is a new individual 'bar(randn(3,4));' gives 3 groups of bars
+	- Subcategories: 'legend({'TN','FP','FN','TP'});' assuming each individual has a confusion matrix to be represented 
+	- Individual names: 'set(gca,'xticklabel',{'I','You','Thee'});''
+  
+
+```
+bar(randn(3,4))
+legend({'TN','FP','FN','TP'})
+set(gca,'xticklabel',{'I','You','Thee'});
+```
