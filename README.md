@@ -277,10 +277,13 @@ Want to have bar chart that each individual has several subcategories
 	- Multiple bar chart: matrix each row is a new individual 'bar(randn(3,4));' gives 3 groups of bars
 	- Subcategories: 'legend({'TN','FP','FN','TP'});' assuming each individual has a confusion matrix to be represented 
 	- Individual names: 'set(gca,'xticklabel',{'I','You','Thee'});''
+
+		**note**: 'cellstr(num2str(name_num_array'));' can be used to set individual name 
   
 
 ```
 bar(randn(3,4))
 legend({'TN','FP','FN','TP'})
-set(gca,'xticklabel',{'I','You','Thee'});
+subcategories = cellstr(num2str([1.0 2.0 3.0]'));
+set(gca,'xticklabel',subcategories);
 ```
