@@ -9,6 +9,7 @@
 - Compact plot using package subtightplot 
 - Matrix dot product using `repmat`
 - Bar chart with different legends and categories 
+- Bar chart legends from an array 
 
 
 ### Reduce for-loop (max fun value)
@@ -287,3 +288,25 @@ legend({'TN','FP','FN','TP'})
 subcategories = cellstr(num2str([1.0 2.0 3.0]'));
 set(gca,'xticklabel',subcategories);
 ```
+### Bar chart legends from an array 
+- Description of problem 
+
+Given an array each element represent a setting of parameters. Want to make each number a legend.
+
+- Solution cellarray 
+
+```
+strCell = {};
+C1_array = 0.1:0.1:0.5;
+for i = 1:length(C1_array)
+	strCell{i} = sprintf('C1 = %.1f',C1_array(i));
+	histogram(randn(10,1));
+end
+legend(strCell);
+
+```
+
+
+
+
+
