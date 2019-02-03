@@ -10,6 +10,7 @@
 - Matrix dot product using `repmat`
 - Bar chart with different legends and categories 
 - Bar chart legends from an array 
+- Set axes numbers, format (precisions), tow rows text, and text font
 
 
 ### Reduce for-loop (max fun value)
@@ -306,7 +307,22 @@ legend(strCell);
 
 ```
 
+### Set axes numbers, format (precisions), tow rows text, and text font
+- Axes numbers 
 
+Y-axes number at positions 1,2,4,8 with specific numbers '1.0','2.0','4.0', '8.0'
+
+```
+yticks([1 2 4 8]);
+yticklabels({'1.0','2.0','4.0', '8.0'});
+```
+
+- Two row titles & text fonts
+
+Speed-up in first row of title, second row 'sphere functions' 
+```
+ylabel({'speed-up' ;'sphere functions'},'Fontsize',15,'Interpreter','latex');
+```
 
 
 
